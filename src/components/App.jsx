@@ -15,6 +15,7 @@ const App = () => {
   useEffect(() => {
     setPositivePercentage(Math.round((good / total) * 100));
   }, [total]);
+
   const counterG = () => {
     setGood(good + 1);
     setTotal(total + 1);
