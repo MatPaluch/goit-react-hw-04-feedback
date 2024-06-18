@@ -9,22 +9,23 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [total, setTotal] = useState(-1);
+  const [total, setTotal] = useState(0);
   const [positivePercentage, setPositivePercentage] = useState(0);
 
   useEffect(() => {
-    setTotal(total + 1);
     setPositivePercentage(Math.round((good / total) * 100));
-  }, [good, neutral, bad]);
-
+  }, [total]);
   const counterG = () => {
     setGood(good + 1);
+    setTotal(total + 1);
   };
   const counterN = () => {
     setNeutral(neutral + 1);
+    setTotal(total + 1);
   };
   const counterB = () => {
     setBad(bad + 1);
+    setTotal(total + 1);
   };
 
   return (
@@ -37,7 +38,7 @@ const App = () => {
             neutral={neutral}
             bad={bad}
             total={total}
-            positivePercentage={positivePercentage}
+            positivePercentage={String(positivePercentage)}
           />
         ) : (
           <Notification message="There is no feedback" />
