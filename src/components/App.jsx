@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Section from "./Section";
 import FeedbackOptions from "./FeedbackOptions";
@@ -12,7 +12,7 @@ const App = () => {
   const [total, setTotal] = useState(0);
   const [positivePercentage, setPositivePercentage] = useState(0);
 
-  useEffect(() => {
+  useMemo(() => {
     setPositivePercentage(Math.round((good / total) * 100));
   }, [total]);
 
@@ -39,7 +39,7 @@ const App = () => {
             neutral={neutral}
             bad={bad}
             total={total}
-            positivePercentage={String(positivePercentage)}
+            positivePercentage={positivePercentage}
           />
         ) : (
           <Notification message="There is no feedback" />
